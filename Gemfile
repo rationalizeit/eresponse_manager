@@ -21,7 +21,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'gibbon'
+gem 'gmail'
+gem 'awesome_print'
+gem 'mysql'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
