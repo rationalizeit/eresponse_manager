@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://gems.rubyforge.org'
 
 gem 'rails', '3.2.2'
 
@@ -25,6 +26,10 @@ gem 'gibbon'
 gem 'gmail'
 gem 'awesome_print'
 gem 'mysql'
+group :development do
+gem 'ruby-debug19'
+gem 'linecache19', ">= 0.5.13"
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

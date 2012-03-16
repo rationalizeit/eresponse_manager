@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306003308) do
+ActiveRecord::Schema.define(:version => 20120316210302) do
+
+  create_table "downloads", :force => true do |t|
+    t.date     "class_at"
+    t.integer  "last_uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "leads", :force => true do |t|
     t.string   "first_name"
@@ -19,8 +26,10 @@ ActiveRecord::Schema.define(:version => 20120306003308) do
     t.string   "email"
     t.string   "phone_number"
     t.boolean  "subscribed"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "download_id",        :default => 0
+    t.boolean  "welcome_email_sent", :default => false
   end
 
   create_table "students", :force => true do |t|
