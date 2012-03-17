@@ -15,7 +15,8 @@ class GetRegistrants
     download = Download.last
     format = "%m/%d/%Y %H:%M:%S"
     last_downloaded_registrant = Lead.where('viewed_demo = true').max_by{|l| l.viewed_demo_at}
-    array_of_hashes.select{|hash| DateTime.strptime(hash['Timestamp'], format) > last_downloaded_registrant.viewed_demo_at}.each do |hash|
+    todays_registrants = array_of_hashes.select{|hash| DateTime.strptime(hash['Timestamp'], format) > last_downloaded_registrant.viewed_demo_at}
+    todays_registrants.each do |hash|
       download.leads.create(:email => hash['Email'])
       lead = Lead.find_by_email(hash['Email'])
       lead.first_name = hash['Full Name'].split(' ').first
@@ -27,6 +28,7 @@ class GetRegistrants
       lead.save
     end
     File.delete(file_name)
+    todays_registrants
     
   end
 

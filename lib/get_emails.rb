@@ -20,8 +20,9 @@ class GetEmails
         Download.last.leads.create(:email => address) if address
       end
     end
-   GetRegistrants.perform
-   send_sample_mail 
+   todays_registrants = GetRegistrants.perform
+   #dont send the sample mail if nothing happened
+   send_sample_mail unless todays_mail.empty? && todays_registrants.empty?
    resend_failed_emails 
    mail.logout
   end
