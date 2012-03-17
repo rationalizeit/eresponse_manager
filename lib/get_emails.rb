@@ -20,6 +20,7 @@ class GetEmails
         Download.last.leads.create(:email => address) if address
       end
     end
+   GetRegistrants.perform
    send_sample_mail 
    resend_failed_emails 
    mail.logout

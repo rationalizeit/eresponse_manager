@@ -26,6 +26,8 @@ gem 'gibbon'
 gem 'gmail'
 gem 'awesome_print'
 gem 'mysql'
+gem 'google-spreadsheet-ruby'
+gem 'oauth'
 group :development do
 gem 'ruby-debug19'
 gem 'linecache19', ">= 0.5.13"

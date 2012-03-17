@@ -5,8 +5,9 @@ class LeadMailer < ActionMailer::Base
 
   def promotional_email(email, batch_date)
     @date = batch_date.strftime('%A, %B %d %G')
+    #check if we know the first name, if not then
     #Try to guess the name of the user from the email
-    @name = email.gsub(/[^A-Za-z]/, '@').split('@').first.titleize
+    @name = Lead.find_by_email(email).try(:first_name).try(:titleize) || email.gsub(/[^A-Za-z]/, '@').split('@').first.titleize
     options = {}
     options[:to] = email.to_s
     options[:from_alias] = "Rationalize IT, LLC"

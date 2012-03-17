@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316210302) do
+ActiveRecord::Schema.define(:version => 20120317001614) do
 
   create_table "downloads", :force => true do |t|
     t.date     "class_at"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20120316210302) do
     t.datetime "updated_at",                            :null => false
     t.integer  "download_id",        :default => 0
     t.boolean  "welcome_email_sent", :default => false
+    t.boolean  "viewed_demo",        :default => false
+    t.datetime "viewed_demo_at"
   end
 
   create_table "students", :force => true do |t|
