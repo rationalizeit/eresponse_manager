@@ -6,7 +6,7 @@ class GetEmails
     todays_mail = []
     if Download.last
       last_uid = Download.last.last_uid 
-      todays_mail = mail.label('test').emails(:after => Download.last.created_at)
+      todays_mail = mail.label('test').emails(:after => Download.last.created_at).select {|d| d.uid > Download.last.uid}
     else 
       todays_mail = mail.label('test').emails
     end
