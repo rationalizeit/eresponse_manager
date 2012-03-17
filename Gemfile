@@ -28,6 +28,7 @@ gem 'awesome_print'
 gem 'mysql'
 gem 'google-spreadsheet-ruby'
 gem 'oauth'
+gem 'gcal4ruby'#, '0.5.5', :path => "#{File.expand_path(__FILE__)}/../vendor/gems/gcal4ruby-0.5.5"
 group :development do
 gem 'ruby-debug19'
 gem 'linecache19', ">= 0.5.13"

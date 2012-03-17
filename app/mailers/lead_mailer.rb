@@ -12,7 +12,6 @@ class LeadMailer < ActionMailer::Base
     options[:to] = email.to_s
     options[:from_alias] = "Rationalize IT, LLC"
     options[:subject] = "BA Training from Rationalize IT, LLC, New Batch on #{batch_date.strftime('%m/%d/%Y')}"
-    puts options
     mail(options)
   end
 end

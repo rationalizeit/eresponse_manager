@@ -1,4 +1,5 @@
 class GetEmails
+  include GCal4Ruby
   @last_downloaded_mail ||= 0
   def self.perform
     mail = Gmail.connect(GMAIL_USERNAME, GMAIL_PWD)
@@ -6,7 +7,8 @@ class GetEmails
     todays_mail = []
     if Download.last
       last_uid = Download.last.last_uid 
-      todays_mail = mail.label('test').emails(:after => Download.last.created_at).select {|d| d.uid > Download.last.uid}
+      todays_mail = mail.label('test').emails(:after => Download.last.created_at)
+      todays_mail = todays_mail.select {|d| d.uid > Download.last.last_uid} unless todays_mail.blank? 
     else 
       todays_mail = mail.label('test').emails
     end
@@ -22,13 +24,16 @@ class GetEmails
     end
    todays_registrants = GetRegistrants.perform
    #dont send the sample mail if nothing happened
-   send_sample_mail unless todays_mail.empty? && todays_registrants.empty?
    resend_failed_emails 
+   unless todays_mail.empty? && todays_registrants.empty?
+    create_event
+    send_summary_mail(Download.last.id) 
+   end
    mail.logout
   end
 
-  def self.send_sample_mail
-    LeadMailer.promotional_email('faraaz@rationalizeit.us', Download.last.class_at).deliver
+  def self.send_summary_mail(download_id)
+    SummaryEmail.summary_email(download_id).deliver
     end
  
   def self.resend_failed_emails
@@ -43,6 +48,26 @@ class GetEmails
           lead.save
         end
       end
+    end
+  end
+
+  def self.create_event
+    begin
+    service = Service.new
+    service.authenticate(GMAIL_USERNAME, GMAIL_PWD)
+    cal = service.calendars.first
+    download_time = Download.last.created_at
+    # Schedule for tomorrow if its already past 6 PM
+    meeting_date = download_time.hour >=18? Date.tomorrow : Date.today
+    event_options = {:title => 'Call Training Leads', 
+                     :calendar => cal,
+                     :start_time => Time.parse("#{meeting_date} at 6 pm"),
+                     :end_time => Time.parse("#{meeting_date} at 6.30 pm"),
+                     :where => 'Your Phone',
+    }
+    event = Event.new(service,event_options)
+    event.save
+    rescue nil
     end
   end
 
