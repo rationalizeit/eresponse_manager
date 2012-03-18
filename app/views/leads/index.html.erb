@@ -11,22 +11,22 @@
 <!-- End Styles -->
 <table class="table">
 <tr>
-  <th>Last Name</th>
   <th>First Name</th>
+  <th>Last Name</th>
   <th>Email</th>
   <th>Phone Number</th>
-  <th> Lead Captured On </th>
-  <th>Welcome Email Sent</th>
+  <th>Captured On </th>
+  <th>Welcome Email Sent?</th>
   <th>Watched Demo?</th>
-  <th>Demo Watched On?</th>
+  <th>Demo Watched On</th>
 </tr>
-<% Lead.all(:order => 'created_at desc').each do |lead| %>
+<% Lead.all(:order => 'captured_on desc').each do |lead| %>
 <tr>
-  <td><%= lead.last_name.nil? ? 'Unknown' : lead.last_name.titleize  -%></td>
   <td><%= lead.first_name.nil? ? 'Unknown' :  lead.first_name.titleize  -%></td>
+  <td><%= lead.last_name.nil? ? 'Unknown' : lead.last_name.titleize  -%></td>
   <td><%= lead.email.downcase -%></td>
   <td><%= number_to_phone(lead.phone_number) -%></td>
-  <td><%= lead.created_at -%> </td>
+  <td><%= lead.captured_on -%> </td>
   <td><%= lead.welcome_email_sent? ? 'Yes' : 'No' %></td>
   <td><%= lead.viewed_demo? ? 'Yes' : 'No' %></td>
   <td><%= lead.viewed_demo? ? lead.viewed_demo_at.strftime('%m/%d/%y') : '' %></td>

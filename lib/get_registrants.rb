@@ -14,14 +14,14 @@ class GetRegistrants
     array_of_hashes = string_data.map {|row| Hash[*headers.zip(row).flatten] }
     date = 10.days.since
     date = (date + (8-date.wday).days)
-
     download = Download.last || Download.create(:class_at => date)
     format = "%m/%d/%Y %H:%M:%S"
     last_downloaded_registrant = Lead.where('viewed_demo = true').max_by{|l| l.viewed_demo_at}
     todays_registrants = last_downloaded_registrant ? (array_of_hashes.select{|hash| DateTime.strptime(hash['Timestamp'], format) > last_downloaded_registrant.viewed_demo_at}) : array_of_hashes
     todays_registrants.each do |hash|
-      download.leads.create(:email => hash['Email'])
-      lead = Lead.find_by_email(hash['Email'])
+      email = hash['Email'].to_s.downcase
+      download.leads.create(:email => email, :captured_on => DateTime.strptime(hash['Timestamp'], format))
+      lead = Lead.find_by_email(email)
       lead.first_name = hash['Full Name'].split(' ').first
       lead.last_name = hash['Full Name'].split(' ').last
       lead.phone_number = hash['Phone Number'].gsub(/[^0-9]/, '') 

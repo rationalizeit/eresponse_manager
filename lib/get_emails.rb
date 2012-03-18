@@ -18,7 +18,7 @@ class GetEmails
       uid = todays_mail.max_by(&:uid).uid
       Download.create(:last_uid => uid, :class_at => date)
       todays_mail.each do |email|
-        address =  email.message.from.first.to_s unless email.message.from.blank? || email.message.from.first.index('sulekha')
+        address =  email.message.from.first.to_s.downcase unless email.message.from.blank? || email.message.from.first.index('sulekha')
         #decode email
         decoded_mail = email.message.decode_body
         #require 'ruby-debug'; debugger if address == 'sadf@sv.com'
@@ -33,10 +33,17 @@ class GetEmails
          name_index = name_string.index('<br>')
          name = name_string[0,name_index][21,name_index]
         end
+        #require 'ruby-debug'; debugger if address == 'ramramyaus@yahoo.com'
+        if decoded_mail.index('Message')
+         comment_index = decoded_mail.gsub(/.*?(?=Message)/im,'').index('</td>')
+         comment = decoded_mail.gsub(/.*?(?=Message)/im,'')[11,comment_index-11].gsub(/[^A-Za-z ,.:!]/,'').gsub(/[\s]+/, ' ')
+        end
         options = {}
         options[:email]= address if address
         options[:phone_number] = phone_number if phone_number
         options[:first_name] = name if name
+        options[:captured_on]= email.envelope.date
+        options[:comment] = comment unless comment.blank?
         Download.last.leads.create(options) if options[:email] 
       end
     end
