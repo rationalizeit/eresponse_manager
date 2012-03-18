@@ -1,3 +1,21 @@
+GIT
+  remote: git@github.com:chuckg/linecache19.git
+  revision: 22c91d747e469f751b0df594183f8f124b1e1b53
+  branch: 0_5_13/dependencies
+  specs:
+    linecache19 (0.5.13)
+      ruby_core_source (>= 0.1.4)
+
+GIT
+  remote: https://github.com/tribune/ruby-debug-base19.git
+  revision: fb0c03823944d2165edfc5e4d37c441c003eac5c
+  specs:
+    ruby-debug-base19 (0.11.26)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      rake (>= 0.8.1)
+      ruby_core_source (>= 0.1.4)
+
 GEM
   remote: https://rubygems.org/
   remote: http://gems.rubyforge.org/
@@ -52,12 +70,6 @@ GEM
     gcal4ruby (0.5.5)
       gdata4ruby (>= 0.1.5)
     gdata4ruby (0.1.5)
-    gibbon (0.3.5)
-      httparty (> 0.6.0)
-      httparty (> 0.6.0)
-      json (> 1.4.0)
-      json (> 1.4.0)
-      rdoc
     gmail (0.4.0)
       gmail_xoauth (>= 0.3.0)
       mail (>= 2.2.1)
@@ -69,17 +81,12 @@ GEM
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
     hike (1.2.1)
-    httparty (0.8.1)
-      multi_json
-      multi_xml
     i18n (0.6.0)
     journey (1.0.3)
     jquery-rails (2.0.1)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
-    linecache19 (0.5.13)
-      ruby_core_source (>= 0.1.4)
     mail (2.4.1)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -87,7 +94,6 @@ GEM
     mime (0.1)
     mime-types (1.17.2)
     multi_json (1.1.0)
-    multi_xml (0.4.1)
     multipart-post (1.1.5)
     mysql (2.8.1)
     nokogiri (1.5.2)
@@ -121,10 +127,6 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
-    ruby-debug-base19 (0.11.25)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby_core_source (>= 0.1.4)
     ruby-debug19 (0.11.6)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -158,14 +160,14 @@ DEPENDENCIES
   awesome_print
   coffee-rails (~> 3.2.1)
   gcal4ruby
-  gibbon
   gmail
   google-spreadsheet-ruby
   jquery-rails
-  linecache19 (>= 0.5.13)
+  linecache19!
   mysql
   oauth
   rails (= 3.2.2)
+  ruby-debug-base19!
   ruby-debug19
   sass-rails (~> 3.2.3)
   sqlite3

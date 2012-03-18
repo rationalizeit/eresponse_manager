@@ -1,7 +1,8 @@
 <h1> Rationalize IT Training Leads</h1>
 <h2>Promised Batch Date: <%=Download.last.class_at.strftime('%A %B %d, %Y') %></h2>
-<!-- Codes by HTML.am -->
-<!-- Start Styles. Move the 'style' tags and everything between them to between the 'head' tags -->
+<div id="refresh_leads" align="right">
+  <%= button_to 'Refresh List', '/leads/refresh_leads', 'data-load-into' => 'refresh_leads_link' -%>
+</div>
 <style type="text/css">
 .table {background-color:#eee;border-collapse:collapse; }
 .table th { background-color:#000;color:white; }

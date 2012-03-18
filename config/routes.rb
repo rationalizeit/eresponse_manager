@@ -1,6 +1,7 @@
 EresponseManager::Application.routes.draw do
   #get "leads/index"
 root :to => "leads#index"
+match 'leads/refresh_leads' => 'leads#refresh_leads'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

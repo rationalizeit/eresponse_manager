@@ -20,19 +20,20 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
+group :development do 
+  gem 'ruby-debug19', :require => false
+  gem 'ruby-debug-base19', :git => 'https://github.com/tribune/ruby-debug-base19.git', :require => false
+  gem 'linecache19', :git => 'git@github.com:chuckg/linecache19.git', :branch => "0_5_13/dependencies", :require => false
+end
 
 gem 'jquery-rails'
-gem 'gibbon'
+#gem 'gibbon'
 gem 'gmail'
 gem 'awesome_print'
 gem 'mysql'
 gem 'google-spreadsheet-ruby'
 gem 'oauth'
 gem 'gcal4ruby'#, '0.5.5', :path => "#{File.expand_path(__FILE__)}/../vendor/gems/gcal4ruby-0.5.5"
-group :development do
-gem 'ruby-debug19'
-gem 'linecache19', ">= 0.5.13"
-end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

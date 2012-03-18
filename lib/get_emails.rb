@@ -19,15 +19,33 @@ class GetEmails
       Download.create(:last_uid => uid, :class_at => date)
       todays_mail.each do |email|
         address =  email.message.from.first.to_s unless email.message.from.blank? || email.message.from.first.index('sulekha')
-        Download.last.leads.create(:email => address) if address
+        #decode email
+        decoded_mail = email.message.decode_body
+        #require 'ruby-debug'; debugger if address == 'sadf@sv.com'
+        # parse decoded mail to get Phone Number if available
+        phone = decoded_mail.gsub(/.*?(?=Phone)/im, "")[0,24] || ''
+        phone.gsub!(/[^0-9]/,'')
+        #Verify if Phone Number was correctly retrieved
+        phone_number = phone.to_i unless phone.blank? || phone.size != 10
+        # parse decoded mail to get Name if available
+        name_string = decoded_mail.gsub(/.*?(?=Contact Details of)/im, "")
+        unless name_string.blank?
+         name_index = name_string.index('<br>')
+         name = name_string[0,name_index][21,name_index]
+        end
+        options = {}
+        options[:email]= address if address
+        options[:phone_number] = phone_number if phone_number
+        options[:first_name] = name if name
+        Download.last.leads.create(options) if options[:email] 
       end
     end
    todays_registrants = GetRegistrants.perform
    #dont send the sample mail if nothing happened
-   resend_failed_emails 
+   #resend_failed_emails 
    unless todays_mail.empty? && todays_registrants.empty?
     create_event
-    send_summary_mail(Download.last.id) 
+    #send_summary_mail(Download.last.id) 
    end
    mail.logout
   end
