@@ -13,3 +13,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+# Ignore constants with real passwords
+/config/initializers/constants.rb
