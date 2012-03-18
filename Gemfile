@@ -27,7 +27,6 @@ gem 'gmail'
 gem 'awesome_print'
 gem 'mysql'
 gem 'google-spreadsheet-ruby'
-gem 'web-app-theme', '~>0.8.0'
 gem 'oauth'
 gem 'gcal4ruby'#, '0.5.5', :path => "#{File.expand_path(__FILE__)}/../vendor/gems/gcal4ruby-0.5.5"
 group :development do
