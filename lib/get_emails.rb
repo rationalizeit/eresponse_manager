@@ -49,10 +49,10 @@ class GetEmails
     end
    todays_registrants = GetRegistrants.perform
    #dont send the sample mail if nothing happened
-   #resend_failed_emails 
+   resend_failed_emails 
    unless todays_mail.empty? && todays_registrants.empty?
     create_event
-    #send_summary_mail(Download.last.id) 
+    send_summary_mail(Download.last.id) 
    end
    mail.logout
   end

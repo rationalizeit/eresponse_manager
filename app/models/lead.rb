@@ -1,6 +1,6 @@
 class Lead < ActiveRecord::Base
   validates_uniqueness_of :email
-  #after_create :send_promotional_email
+  after_create :send_promotional_email
   
   def send_promotional_email
     class_date = self.download.class_at
