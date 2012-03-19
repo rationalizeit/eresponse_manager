@@ -102,6 +102,7 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -168,6 +169,7 @@ DEPENDENCIES
   linecache19!
   mysql
   oauth
+  pg
   rails (= 3.2.2)
   rails-boilerplate
   ruby-debug-base19!
