@@ -1,7 +1,18 @@
 EresponseManager::Application.routes.draw do
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "leads" => 'leads#index', :as => "leads"
+  get "users/new"
+  get "sign_up" => "users#new"
+
   #get "leads/index"
-root :to => "leads#index"
-match 'leads/refresh_leads' => 'leads#refresh_leads'
+  root :to => "users#new"
+# resources
+  resources :users
+  resources :sessions
+
+  match 'leads/refresh_leads' => 'leads#refresh_leads'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

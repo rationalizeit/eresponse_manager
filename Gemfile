@@ -32,6 +32,8 @@ gem 'gmail'
 gem 'awesome_print'
 gem 'mysql'
 gem 'google-spreadsheet-ruby'
+gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'rails-boilerplate'
 gem 'oauth'
 gem 'gcal4ruby'#, '0.5.5', :path => "#{File.expand_path(__FILE__)}/../vendor/gems/gcal4ruby-0.5.5"
 # To use ActiveModel has_secure_password

@@ -36,7 +36,7 @@ class GetEmails
         #require 'ruby-debug'; debugger if address == 'ramramyaus@yahoo.com'
         if decoded_mail.index('Message')
          comment_index = decoded_mail.gsub(/.*?(?=Message)/im,'').index('</td>')
-         comment = decoded_mail.gsub(/.*?(?=Message)/im,'')[11,comment_index-11].gsub(/[^A-Za-z ,.:!]/,'').gsub(/[\s]+/, ' ')
+         comment = decoded_mail.gsub(/.*?(?=Message)/im,'')[11,comment_index-11].gsub(/[^A-Za-z0-9 ,.:!]/,'').gsub(/[\s]+/, ' ')
         end
         options = {}
         options[:email]= address if address
