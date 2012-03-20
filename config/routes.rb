@@ -2,11 +2,14 @@ EresponseManager::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "leads" => 'leads#index', :as => "leads"
+  get "leads/destroy" => 'leads#destroy', :as => "destroy"
+  get "leads/:id" => 'leads#show', :as => "lead"
   get "users/new"
+  get "refresh_leads" => 'leads#refresh_leads', :as => "refresh"
   get "sign_up" => "users#new"
 
   #get "leads/index"
-  root :to => "users#new"
+  root :to => "leads#index"
 # resources
   resources :users
   resources :sessions

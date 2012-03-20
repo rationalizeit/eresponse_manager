@@ -1,0 +1,16 @@
+<div id="lead" class="toolbar">
+      <h1><%= @lead.full_name %></h1>
+         <a class="back" href="#">Back</a>
+</div>
+		
+<ul>
+<li> Contacted On: <%= @lead.captured_on %> </li>
+
+<li><h4><b>Comment:</b> </h4><%= @lead.comment || 'N/A' %></li>
+<li><%= link_to "Email", "mailto:#{@lead.email}", :rel => 'external' %></li>
+<%- if !@lead.phone_number.blank? %>
+<li><%= link_to "Call", "tel:#{@lead.phone_number}", :rel => 'external' %></li>
+<%- end -%>
+
+</ul>
+ 

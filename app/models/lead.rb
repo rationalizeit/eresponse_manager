@@ -19,4 +19,12 @@ class Lead < ActiveRecord::Base
     Download.find(self.download_id)
   end
   
+  def full_name
+    name = ''
+    name << self.first_name unless self.first_name.blank?
+    name << ' '
+    name << self.last_name unless self.last_name.blank?
+    name
+  end
+  
 end

@@ -1,0 +1,16 @@
+<div id="leads">
+        <div class="toolbar">
+            <h1>Training Leads</h1>
+<%= link_to "Refresh", refresh_path, :class => "button", :rel => "external" %>
+ 		</div>
+</div>
+
+<ul>
+	<% for lead in @leads %>
+		<li class="arrow">
+			<%= link_to h(lead.first_name), lead %>
+			<small class="counter"><%= link_to h(lead.viewed_demo? ? "Demo!": ""), lead %></small>
+		</li>
+		<% end %>
+		</ul>
+			
