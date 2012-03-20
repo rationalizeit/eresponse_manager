@@ -7,7 +7,7 @@ class Lead < ActiveRecord::Base
     begin
       LeadMailer.promotional_email(self.email, class_date).deliver
     rescue
-      self.welcome_email.sent = false
+      self.welcome_email_sent = false
       self.save
     else
       self.welcome_email_sent = true
