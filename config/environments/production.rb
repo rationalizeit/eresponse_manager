@@ -19,6 +19,16 @@ EresponseManager::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'rationalizeit.us',
+    :user_name            => GMAIL_USERNAME,
+    :password             => GMAIL_PWD,
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
