@@ -14,4 +14,4 @@
 /log/*.log
 /tmp
 # Ignore constants with real passwords
-/config/initializers/constants.rb
+#/config/initializers/constants.rb
