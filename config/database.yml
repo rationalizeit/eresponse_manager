@@ -27,4 +27,5 @@
  production:
   <<: *mysql
   database: lead_production
+  reconnect: true
   
