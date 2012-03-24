@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319052959) do
+ActiveRecord::Schema.define(:version => 20120324213946) do
 
   create_table "downloads", :force => true do |t|
     t.date     "class_at"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(:version => 20120319052959) do
     t.date     "captured_on"
     t.text     "comment"
   end
+
+  add_index "leads", ["captured_on"], :name => "index_leads_on_captured_on"
+  add_index "leads", ["download_id"], :name => "index_leads_on_download_id"
 
   create_table "students", :force => true do |t|
     t.datetime "created_at", :null => false
