@@ -12,3 +12,8 @@
  *= require_self
  *= require_tree .
 */
+
+body {
+    background: url("/assets/background-gradient.png") repeat-x fixed 0 0%, url("/assets/body-speckle.png") repeat fixed 0 0 #FAFBFC;
+    padding-top: 50px;
+}

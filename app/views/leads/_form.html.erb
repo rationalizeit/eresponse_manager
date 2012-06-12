@@ -1,0 +1,74 @@
+<%= form_for @lead, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :first_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :phone_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone_number, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :subscribed, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :subscribed, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :download_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :download_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :welcome_email_sent, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :welcome_email_sent, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :viewed_demo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :viewed_demo, :class => 'check_box' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :viewed_demo_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :viewed_demo_at, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :captured_on, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :captured_on, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :comment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :comment, :class => 'text_area' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                leads_path, :class => 'btn' %>
+  </div>
+<% end %>

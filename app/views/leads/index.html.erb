@@ -1,37 +1,38 @@
-<h1> Rationalize IT Training Leads</h1>
-<h2>Promised Batch Date: <%=Download.last.class_at.strftime('%A %B %d, %Y') %></h2>
-<div id="refresh_leads">
-  <%= button_to 'Refresh List', refresh_path, 'data-load-into' => 'refresh_leads_link' -%>
+<%- model_class = Lead.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Rationalize IT Training Leads" %></h1>
 </div>
-<style type="text/css">
-.table {background-color:#eee;border-collapse:collapse; }
-.table th { background-color:#000;color:white; }
-.table td, .table th { padding:5px;border:1px solid #000; }
-</style>
-<!-- End Styles -->
-<table class="table">
-<tr>
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>Email</th>
-  <th>Phone Number</th>
-  <th>Captured On </th>
-  <th>Welcome Email Sent?</th>
-  <th>Watched Demo?</th>
-  <th>Demo Watched On</th>
-  <th>Comment</th>
-</tr>
-<% Lead.all(:order => 'captured_on desc').each do |lead| %>
-<tr>
-  <td><%= lead.first_name.nil? ? 'Unknown' :  lead.first_name.titleize  -%></td>
-  <td><%= lead.last_name.nil? ? 'Unknown' : lead.last_name.titleize  -%></td>
-  <td><%= lead.email.downcase -%></td>
-  <td><%= number_to_phone(lead.phone_number) -%></td>
-  <td><%= lead.captured_on -%> </td>
-  <td><%= lead.welcome_email_sent? ? 'Yes' : 'No' %></td>
-  <td><%= lead.viewed_demo? ? 'Yes' : 'No' %></td>
-  <td><%= lead.viewed_demo? ? lead.viewed_demo_at.strftime('%m/%d/%y') : '' %></td>
-  <td><%= lead.comment %>
-</tr>
-<%- end -%>
+<div id="refresh_leads">
+  <%= button_to 'Refresh List', refresh_path, 'data-load-into' => 'refresh_leads_link', :class => 'btn-primary' -%>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:first_name) %></th>
+      <th><%= model_class.human_attribute_name(:last_name) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:phone_number) %></th>
+      <th><%= model_class.human_attribute_name(:welcome_email_sent) %></th>
+      <th><%= model_class.human_attribute_name(:viewed_demo) %></th>
+      <th><%= model_class.human_attribute_name(:viewed_demo_at) %></th>
+      <th><%= model_class.human_attribute_name(:captured_on) %></th>
+      <th><%= model_class.human_attribute_name(:comment) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @leads.each do |lead| %>
+      <tr>
+        <td><%= lead.first_name %></td>
+        <td><%= lead.last_name %></td>
+        <td><%= lead.email %></td>
+        <td><%= lead.phone_number %></td>
+        <td><%= lead.welcome_email_sent %></td>
+        <td><%= lead.viewed_demo %></td>
+        <td><%= lead.viewed_demo_at %></td>
+        <td><%= lead.captured_on %></td>
+        <td><%= lead.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+

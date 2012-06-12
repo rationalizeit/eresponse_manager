@@ -35,6 +35,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'rails-boilerplate'
 gem 'oauth'
 gem 'gcal4ruby'#, '0.5.5', :path => "#{File.expand_path(__FILE__)}/../vendor/gems/gcal4ruby-0.5.5"
+gem 'twitter-bootstrap-rails'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

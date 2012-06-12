@@ -14,8 +14,8 @@ class LeadsController < ApplicationController
   def refresh_leads
     GetEmails.perform
     redirect_to root_path
-    #flash[:notice] = 'Your request has been queued. Please check this page in a few minutes'
-    #render :text => 'Your request has been queued. Please check this page in a few minutes'
+    flash[:notice] = "Successfully refreshed leads from Sulekha and Google Docs"
+   
   end
   
   def show
