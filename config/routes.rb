@@ -5,7 +5,7 @@ EresponseManager::Application.routes.draw do
   get "leads/destroy" => 'leads#destroy', :as => "destroy"
   get "leads/:id" => 'leads#show', :as => "lead"
   get "users/new"
-  get "refresh_leads" => 'leads#refresh_leads', :as => "refresh"
+#  get "refresh_leads" => 'leads#refresh_leads', :as => "refresh"
   get "sign_up" => "users#new"
 
   #get "leads/index"
@@ -14,7 +14,7 @@ EresponseManager::Application.routes.draw do
   resources :users
   resources :sessions
 
-  match 'leads/refresh_leads' => 'leads#refresh_leads'
+  match 'leads/refresh_leads' => 'leads#refresh_leads', :via => [:get, :post], :as => "refresh"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
