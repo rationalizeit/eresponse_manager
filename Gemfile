@@ -49,4 +49,4 @@ gem 'twitter-bootstrap-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+ gem "debugger", "~> 1.1.4"
